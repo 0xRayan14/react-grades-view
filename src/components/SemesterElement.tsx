@@ -15,18 +15,11 @@ export default function SemesterElement () {
                 <dd
                     className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-4 sm:mt-0 flex justify-between gap-x-1.5"
                 >
-                    <div
-                        className="flex flex-row flex-nowrap overflow-y-scroll gap-x-1.5"
-                    >
-
-                        <GradeElement grade={5} />
-                    </div>
-                    <div className="flex">
-                        <div>
+                    <div className="flex justify-end">
+                            <GradeInput/>
+                            <GradeAverage gradeAverage={5}></GradeAverage>
                             <label htmlFor="sem1" className="sr-only"
                             >Search candidates</label>
-                            <GradeInput></GradeInput>
-                        </div>
                     </div>
                 </dd>
             </div>
