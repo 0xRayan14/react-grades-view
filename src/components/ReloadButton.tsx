@@ -1,5 +1,6 @@
 export default function ReloadButton () {
     function refreshPage() {
+        // @ts-ignore
         window.location.reload(false);
     }
     return (

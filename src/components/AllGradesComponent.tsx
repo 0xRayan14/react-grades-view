@@ -1,7 +1,21 @@
 import SemesterElement from "./SemesterElement.tsx";
 import SemesterButton from "./SemesterButton.tsx";
+import AllAverage from "./AllAverage.tsx";
+import {useState} from "react";
 
 export default function AllGradesComponent() {
+    const newAverage = (average: number) => setAverages((averages) => [...averages, average]);
+    const [allAverages, setAverages] = useState<number[]>([]);
+
+    const calculateAverage = () => {
+        let sum = 0
+        for (const average of allAverages) {
+            sum += average
+        }
+        return Math.round((sum / allAverages.length) * 2) / 2
+
+    }
+
 
     return (
         <>
@@ -18,20 +32,7 @@ export default function AllGradesComponent() {
                                         Mathématiques
                                     </h2>
                                 </div>
-                                <div className="mt-4 flex md:ml-4 md:mt-0">
-                        <span
-                            className="inline-flex items-center gap-x-1.5 rounded-md px-3 py-1 text-lg font-bold text-gray-900 ring-1 ring-inset ring-gray-200"
-                        >
-                          <svg
-                              className="h-1.5 w-1.5 fill-green-500"
-                              viewBox="0 0 6 6"
-                              aria-hidden="true"
-                          >
-                            <circle cx="3" cy="3" r="3"/>
-                          </svg>
-                          5.5
-                        </span>
-                                </div>
+                                <AllAverage gradeAverage={calculateAverage()}/>
                             </div>
 
                             <div className="mt-6 border-t border-gray-100">

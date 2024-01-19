@@ -1,19 +1,20 @@
+import React, { useState } from "react";
 import SemesterElement from "./SemesterElement.tsx";
-import React, {useState} from "react";
 
-export default function SemesterButton () {
-    const [newSemester, setNewSemester] = useState('');
-    const [semesters, setSemesters] = useState([]);
+export default function SemesterButton() {
+
+
+    const [showSemesterElement, setShowSemesterElement] = useState(false);
 
     const handleNewSemester = () => {
-        setNewSemester('');
+        setShowSemesterElement(true);
     };
 
     return (
         <>
-            {semesters.map((semester, index) => (
-                <SemesterElement key={index} semester={semester} />
-            ))}
+            {showSemesterElement && <SemesterElement />}
+
+
             <div className="px-4 py-6 sm:gap-4 sm:px-0">
                 <button
                     onClick={handleNewSemester}

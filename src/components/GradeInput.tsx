@@ -1,36 +1,30 @@
-// GradeInput.tsx
 import React, { useState } from 'react';
-import GradeElement from './GradeElement';
-import GradeAverage from './GradeAverage';
 
 function errorAlert() {
     alert("La note saisie n'est pas valable");
 }
 
-export default function GradeInput() {
-    const [newGrade, setNewGrade] = useState('');
-    const [grades, setGrades] = useState([]);
+export default function GradeInput({ setNewGrade }: { setNewGrade: (g : number) => void }) {
+    const [grades, setGrades] = useState("")
+
+    const gradeChanges = (e: React.ChangeEvent<HTMLInputElement>) =>{
+        setGrades(e.target.value)
+    }
 
     const handleNewGrade = () => {
-        const numericGrade = parseFloat(newGrade);
+        const AddedGrade = parseFloat(grades)
+        if (!isNaN(AddedGrade) && AddedGrade >= 1 && AddedGrade <=6) {
+            setNewGrade(AddedGrade)
+            setGrades("")
 
-        if (isNaN(numericGrade) || numericGrade < 1 || numericGrade > 6) {
-            errorAlert();
-        } else {
-            setGrades((prevGrades) => [...prevGrades, numericGrade]);
+        }   else {
+            errorAlert()
         }
-
-        setNewGrade('');
     };
 
     return (
         <>
 
-            <div className="start-0">
-                {grades.map((grade, index) => (
-                    <GradeElement key={index} grade={grade} />
-                ))}
-            </div>
 
             <div className="flex justify-end">
                 <div>
@@ -48,8 +42,8 @@ export default function GradeInput() {
                                 id="sem1"
                                 className="block w-14 rounded-none rounded-l-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6"
                                 placeholder="4"
-                                value={newGrade}
-                                onChange={(e) => setNewGrade(e.target.value)}
+                                value={grades}
+                                onChange={gradeChanges}
                             />
                         </div>
                         <button
@@ -70,10 +64,10 @@ export default function GradeInput() {
                                 />
                             </svg>
                         </button>
-                        <GradeAverage gradeAverage={"average"}></GradeAverage>
                     </div>
                 </div>
             </div>
+
         </>
     );
 }
