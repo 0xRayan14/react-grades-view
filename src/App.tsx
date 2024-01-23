@@ -1,7 +1,7 @@
 import './App.css'
 
 import AllGradesComponent from "./components/AllGradesComponent.tsx";
-import AllSubjectsAverages from "./components/AllSubjectsAverages.tsx";
+import AllSubjectsAverages from "./components/allAverages/AllSubjectsAverages.tsx";
 import HeaderNavBar from "./components/HeaderNavBar.tsx";
 
 function App() {

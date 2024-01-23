@@ -1,3 +1,4 @@
+
 export default function GradeElement({ grade }: { grade: number }) {
 
     let classColor = '';

@@ -1,21 +1,20 @@
-import SemesterElement from "./SemesterElement.tsx";
 import SemesterButton from "./SemesterButton.tsx";
-import AllAverage from "./AllAverage.tsx";
-import {useState} from "react";
+import SubjectAverage from "./SubjectAverage.tsx";
+import React, {} from "react";
 
 export default function AllGradesComponent() {
-    const newAverage = (average: number) => setAverages((averages) => [...averages, average]);
-    const [allAverages, setAverages] = useState<number[]>([]);
 
-    const calculateAverage = () => {
-        let sum = 0
+
+    const newAverage = (average) => setAverages((averages) => [...averages, average]);
+    const [allAverages, setAverages] = React.useState([]);
+
+    const calculateSubjectAverage = () => {
+        let sum = 0;
         for (const average of allAverages) {
-            sum += average
+            sum += average;
         }
-        return Math.round((sum / allAverages.length) * 2) / 2
-
-    }
-
+        return Math.round((sum / allAverages.length) * 2) / 2;
+    };
 
     return (
         <>
@@ -32,13 +31,12 @@ export default function AllGradesComponent() {
                                         Mathématiques
                                     </h2>
                                 </div>
-                                <AllAverage gradeAverage={calculateAverage()}/>
+                                <SubjectAverage subjectAverage={calculateSubjectAverage()}/>
                             </div>
 
                             <div className="mt-6 border-t border-gray-100">
                                 <dl className="divide-y divide-gray-100">
-                                    <SemesterElement/>
-                                    <SemesterButton></SemesterButton>
+                                    <SemesterButton/>
                                 </dl>
                             </div>
                         </div>
